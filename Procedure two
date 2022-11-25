@@ -1,0 +1,33 @@
+after computer start push F10 - go to System Configuration - open Boot Options):
+
+check off Secure Boot and also Legacy Boot.
+
+Save the changes and exit systems configuration.
+
+Press F9 and choose Boot from EFI File i.e /boot/efi/EFI/ubuntu/grubx64.efi
+
+Ubuntu will start and once you get into ubuntu 
+
+Open the terminal using CTRL+ALT + T 
+
+Use the command below to check where the windows boot loader is located 
+    
+    $ sudo efibootmgr -v
+     
+ most likely the original boot loader is in here:
+ /boot/efi/EFI/Microsoft/Boot/bootmgfw.efi (Please note that in your computer it might be in a different place. If so, you will need to adjust the commands below.)
+
+ Make a backup of that file by moving it one level up:
+   
+    $ sudo cp /boot/efi/EFI/Microsoft/Boot/bootmgfw.efi /boot/efi/EFI/Microsoft/bootmgfw.efi
+    
+Finally, copy GRUB2's boot loader in that place, "tricking" the system into loading the boot loader you want instead of Windows' original boot loader:
+        
+       $ sudo cp /boot/efi/EFI/ubuntu/grubx64.efi /boot/efi/EFI/Microsoft/Boot/bootmgfw.efi   
+     
+finally you have dual boot working with GRUB2. In case Windows overwrites the boot loader again after an update (as it did with me), you already know the steps to get grub back to its place.
+Hope this one helps 
+
+    
+     
+
