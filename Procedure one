@@ -1,0 +1,23 @@
+After the computer start push F10 and go to  the System Configurations - open Boot Options
+
+Check Customized Boot on
+
+Check off SecureBoot
+
+Boot Mode: choose UEFI Hybrid or UEFI Native (I chose UEFI Native)
+
+UEFI Boot Order: put Customized Boot to the top
+
+Define Customized Boot Option: choose Add + put the setting: \EFI\ubuntu\grubx64.efi
+
+Found out that the correct path string when opening the GRUB via the Boot from EFI File option in the Fast Boot Options (F9). In the beginning, the options list contained:
+      OS boot Manager
+      Boot from EFI File
+After adding the Customized Boot option, it was added to the list:
+     Customized Boot
+     OS boot Manager
+     Boot from EFI File
+Save changes and exit the systems configuration 
+press F9 and choose customised boot and your system will power on 
+You can try to restart it and hope it can now start automatically.
+Hope this works, you can share it to help others facing the same issue 
